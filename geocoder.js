@@ -7,7 +7,7 @@ $(document).ready(function() {
     var city_state = $("#listing_secondary_city_id").find(":selected").text();
     var zip = $("#listing_zip").val();
     // pass this data to geocoder function
-    geocoder(address+', '+city_state+', '+zip));
+    geocoder(address+', '+city_state+', '+zip);
     return false; 
   });
 });
@@ -17,7 +17,7 @@ function geocoder(full_address) {
   $.ajax({
     dataType: "json",
     url: "http://maps.googleapis.com/maps/api/geocode/json?sensor=false",
-    data: { "address": full_address }
+    data: { "address": full_address },
     success: function(data, textStatus){
       // insert long/lat in the form before it gets submitted
       form$.append("<input type='hidden' name='listing[longitude]' value='"+data.results.geometry.location.lng+"' />");
