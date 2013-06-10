@@ -1,7 +1,7 @@
 $(document).ready(function() {
   $("#new_listing").submit(function(event) {
     // disable the submit button to prevent repeated clicks
-    $(".btn-success").attr("disabled", "disabled");
+      // $(".btn-success").attr("disabled", "disabled");
     // get address from the form
     var address = $("#listing_address").val();
     var city_state = $("#listing_secondary_city_id").find(":selected").text();
@@ -20,8 +20,9 @@ function geocoder(full_address) {
     data: { "address": full_address },
     success: function(data, textStatus){
       // insert long/lat in the form before it gets submitted
-      form$.append("<input type='hidden' name='listing[longitude]' value='"+data.results.geometry.location.lng+"' />");
-      form$.append("<input type='hidden' name='listing[latitude]' value='"+data.results.geometry.location.lat+"' />");
+      console.log(data);
+      form$.append("<input type='hidden' name='listing[longitude]' value='"+data.results[0].geometry.location.lng+"' />");
+      form$.append("<inpute type='hidden' name='listing[latitude]' value='"+data.results[0].geometry.location.lat+"' />");
       // and submit
       form$.get(0).submit();
     }, 
@@ -31,6 +32,3 @@ function geocoder(full_address) {
     }
   });
 };
-
-
-
